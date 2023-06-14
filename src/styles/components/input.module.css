@@ -1,0 +1,82 @@
+.ipt {
+  background: none;
+  text-decoration: none;
+  border: none;
+  border-bottom: 1px solid var(--nextui--inputBorderColor);
+  outline: none;
+  transition: all 0.2s;
+  box-sizing: border-box;
+  color: var(--nextui--inputTextColor);
+}
+
+.ipt:hover,
+.focusedInput {
+  border-bottom: 1px solid var(--color);
+}
+
+.label,
+.showHide,
+.ipt {
+  width: 100%;
+}
+
+.showHide > * {
+  pointer-events: initial;
+  transform: translate(-50%, 0.1rem);
+  top: 50%;
+  position: absolute;
+  font-size: 1rem !important;
+}
+
+.label,
+.showHide {
+  user-select: none;
+  transition: all 0.2s;
+  color: #777;
+  position: absolute;
+  font-size: 0.95em;
+  pointer-events: none;
+}
+.showHide {
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
+  align-items: center;
+}
+
+.ifclabel {
+  transition: all 0.2s;
+  color: var(--color);
+  font-size: 0.75em;
+  transform: translateY(-75%);
+}
+
+.superContainer {
+  background: var(--nextui--inputColor);
+  padding: 7px;
+  border-radius: 5px;
+  margin: 3px 0px;
+  transition: all 0.15s;
+  display: flex;
+  flex-direction: row;
+  column-gap: 4px;
+  padding-top: 0px;
+}
+
+.container {
+  position: relative;
+  flex-grow: 1;
+  transition: all 0.15s;
+}
+
+.notEnabled {
+  pointer-events: none;
+}
+
+.lsideThing {
+  margin-top: 5px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

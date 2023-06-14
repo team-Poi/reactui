@@ -1,0 +1,19 @@
+.bar {
+  z-index: 1;
+  --width: 100px;
+  --height: 15px;
+  width: var(--width);
+  height: var(--height);
+  background-color: var(--nextui-colors-accents2);
+  border-radius: 8px;
+}
+.movebar {
+  z-index: 2;
+  --value: 0%;
+  --color: var(--POI-UI-PRIMARY);
+  width: max(min(var(--value), 100%), 0px);
+  height: var(--height);
+  background-color: var(--color);
+  border-radius: 8px;
+  transition: 0.7s ease;
+}

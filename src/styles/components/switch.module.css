@@ -1,0 +1,32 @@
+.container {
+  --size: 1rem;
+  --width: 3rem;
+  --color: var(--POI-UI-PRIMARY);
+  width: var(--width);
+  height: var(--size);
+  padding: 0.1rem;
+  border-radius: calc(var(--size) / 2);
+  background-color: var(--color);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.offBackground {
+  background-color: var(--nextui-colors-accents2);
+}
+
+.dot {
+  position: relative;
+  top: 0.1rem;
+  left: 0px;
+  width: calc(var(--size) - 0.2rem);
+  height: calc(var(--size) - 0.2rem);
+  border-radius: calc(var(--size) / 2);
+  background-color: white;
+  transition: all 0.2s;
+}
+
+.dot.enabled {
+  left: var(--width);
+  transform: translateX(calc(var(--size) * -1));
+}

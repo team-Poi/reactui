@@ -1,0 +1,70 @@
+.main {
+  --borderSize: 0.1875rem;
+  --noneBorder: var(--borderSize) solid transparent;
+  --color: var(--POI-UI-PRIMARY);
+  --size: 100px;
+  display: flex;
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+}
+
+.loaders {
+  border-radius: 50%;
+  width: var(--size);
+  height: var(--size);
+  border-top: var(--noneBorder);
+  border-left: var(--noneBorder);
+  border-right: var(--noneBorder);
+  border-bottom: var(--color) solid 0.1875rem;
+  position: absolute;
+  top: 0px;
+}
+
+.loader1 {
+  z-index: 3;
+  animation: 0.7s ease-in-out 1s infinite running rotate1;
+}
+.loader2 {
+  z-index: 2;
+  --color: #aaa;
+  animation: 0.7s ease-in-out 1s infinite running rotate2;
+}
+.loader3 {
+  z-index: 1;
+  --color: #ccc;
+  animation: 0.7s ease-in-out 1s infinite running rotate3;
+}
+@keyframes rotate1 {
+  0% {
+    transform: rotate(0deg);
+  }
+  74.999% {
+    transform: rotate(360deg);
+  }
+  75% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes rotate2 {
+  6% {
+    transform: rotate(0deg);
+  }
+  80.999% {
+    transform: rotate(360deg);
+  }
+  81% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes rotate3 {
+  12% {
+    transform: rotate(0deg);
+  }
+  86.999% {
+    transform: rotate(360deg);
+  }
+  87% {
+    transform: rotate(0deg);
+  }
+}

@@ -1,0 +1,114 @@
+.background {
+  z-index: 9998;
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all 0.2s;
+  opacity: 0;
+  user-select: none;
+  pointer-events: none;
+}
+.background.opened {
+  opacity: 1;
+  user-select: inherit;
+  pointer-events: inherit;
+}
+.sizing {
+  max-width: min(95vw, 600px);
+  max-height: 80vh;
+  min-width: 300px;
+  min-height: 150px;
+}
+
+.modal {
+  max-height: 80vh;
+  user-select: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--nextui-colors-backgroundContrast);
+  border-radius: 10px;
+  width: max-content;
+  height: max-content;
+  box-shadow: var(--nextui-shadows-lg);
+  z-index: 9999;
+  animation: 0.2s ease-in-out infinite;
+}
+
+.modalFlexBody {
+  min-height: 150px;
+}
+
+.titleContainer {
+  border-radius: 10px 10px 0px 0px;
+  width: 100%;
+  background: var(--nextui-colors-backgroundContrast);
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px -1px,
+    rgba(0, 0, 0, 0.14) 0px 2px 2.5px 0px, rgba(0, 0, 0, 0.12) 0px 0.5px 5px 0px;
+}
+
+.title {
+  width: 100%;
+  padding: 4px;
+  user-select: none;
+  font-size: 1.25rem;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+}
+
+.content {
+  padding: 0px 8px;
+  margin: 8px 0px;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.textarea {
+  max-width: calc(min(95vw, 600px) - 32px);
+  min-width: calc(300px - 16px);
+  max-height: 100%;
+  min-height: 150px;
+  outline: none;
+  padding: 5px;
+  border: 2px solid var(--nextui--inputBorderColor);
+  border-radius: 8px;
+}
+
+.input {
+  max-height: unset;
+  min-height: unset;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  12.5% {
+    transform: translate(calc(-50% + 1rem), -50%) scale(0.975) rotate(2deg);
+  }
+  37.5% {
+    transform: translate(calc(-50% - 1rem), -50%) scale(0.95) rotate(-2deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(0.94) rotate(0deg);
+  }
+  62.5% {
+    transform: translate(calc(-50% + 0.5rem), -50%) scale(0.97) rotate(1deg);
+  }
+  87.5% {
+    transform: translate(calc(-50% - 0.5rem), -50%) scale(0.985) rotate(-1deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0);
+  }
+}
