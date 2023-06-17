@@ -33,12 +33,15 @@ export interface PromptModal {
   canExit?: boolean;
   canBeEmpty?: boolean;
 }
-export type Modal = ConfirmModal | PromptModal;
+export interface DefaultModal {
+  renderChildren: (close: () => void) => React.ReactNode;
+}
+export type Modal = ConfirmModal | PromptModal | DefaultModal;
 export type ConfirmModalResult = "YES" | "NO" | "EXITED";
 export type PromptModalResult = null | string;
 export interface ModalState {
   id: string;
-  type: "CONFIRM" | "PROMPT" | "LINE";
+  type: "CONFIRM" | "PROMPT" | "LINE" | "DEFAULT";
   modal: Modal;
 }
 export interface ModalContextData {
@@ -49,6 +52,7 @@ export interface ModalContextData {
     confirm: (modal: ConfirmModal) => Promise<ConfirmModalResult>;
     prompt: (modal: PromptModal) => Promise<PromptModalResult>;
     line: (modal: PromptModal) => Promise<PromptModalResult>;
+    modal: (modal: DefaultModal) => void;
   };
 }
 
@@ -65,6 +69,11 @@ export const defaultModalState: ModalContextData = {
     confirm: () => emptyPromise<ConfirmModalResult>(),
     prompt: () => emptyPromise<PromptModalResult>(),
     line: () => emptyPromise<PromptModalResult>(),
+    modal: () => {
+      return {
+        close: () => {},
+      };
+    },
   },
 };
 
@@ -421,6 +430,44 @@ export function RenderLineModal({
   );
 }
 
+export function RednerDefaultModal({
+  modal,
+}: {
+  modal: {
+    modal: DefaultModal;
+    id: string;
+  };
+}) {
+  const onTryCloseHandler = useCallback(() => {
+    modalEmitter.emit(modal.id, "EXITED");
+  }, [modal]);
+
+  useEffect(() => {
+    modalEmitter.on("TRY.EXIT", onTryCloseHandler);
+
+    return () => {
+      modalEmitter.removeListener("TRY.EXIT", onTryCloseHandler);
+    };
+  }, [onTryCloseHandler]);
+
+  if (!modal) return <></>;
+  if (modal.id === "UNDEFINED___") return <></>;
+
+  return (
+    <>
+      <div
+        className={classNames(styles.modal, styles.sizing)}
+        style={{
+          minHeight: "unset",
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {modal.modal.renderChildren(onTryCloseHandler)}
+      </div>
+    </>
+  );
+}
+
 export function RenderModal({ modal }: { modal?: ModalState }) {
   if (!modal) return <></>;
   if (modal && modal?.type === "CONFIRM")
@@ -448,6 +495,16 @@ export function RenderModal({ modal }: { modal?: ModalState }) {
       <RenderLineModal
         modal={{
           modal: modal.modal as PromptModal,
+          id: modal.id,
+        }}
+      />
+    );
+
+  if (modal && modal?.type === "DEFAULT")
+    return (
+      <RednerDefaultModal
+        modal={{
+          modal: modal.modal as DefaultModal,
           id: modal.id,
         }}
       />
@@ -534,6 +591,28 @@ export function ModalProvider({ children }: PropsWithChildren) {
       });
     });
   };
+  const addDefaultModal = (modal: DefaultModal): void => {
+    let id = Math.random().toString();
+    setModals((oldModals) => [
+      ...oldModals,
+      {
+        id: id,
+        type: "DEFAULT",
+        modal: modal,
+      },
+    ]);
+    setModalOpened(true);
+
+    modalEmitter.once(id, () => {
+      setModals((mod_) => {
+        let md = [...mod_];
+        md.shift();
+        if (md.length === 0) setModalOpened(false);
+        return md || [];
+      });
+    });
+    return;
+  };
   return (
     <>
       <ModalContext.Provider
@@ -544,6 +623,7 @@ export function ModalProvider({ children }: PropsWithChildren) {
             confirm: addConfirmModal,
             prompt: addPromptModal,
             line: addLineModal,
+            modal: addDefaultModal,
           },
         }}
       >
