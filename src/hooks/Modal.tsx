@@ -35,6 +35,7 @@ export interface PromptModal {
 }
 export interface DefaultModal {
   renderChildren: (close: () => void) => React.ReactNode;
+  canExit?: boolean;
 }
 export type Modal = ConfirmModal | PromptModal | DefaultModal;
 export type ConfirmModalResult = "YES" | "NO" | "EXITED";
@@ -438,7 +439,19 @@ export function RednerDefaultModal({
     id: string;
   };
 }) {
+  const [shake, setShaking] = useState(false);
+  const lastShake = useRef(new Date().getTime() - 2000);
+
   const onTryCloseHandler = useCallback(() => {
+    if (modal.modal.canExit === false) {
+      lastShake.current = new Date().getTime();
+      setShaking(true);
+      setTimeout(() => {
+        let sha = new Date().getTime() - lastShake.current;
+        if (sha < 200) return;
+        setShaking(false);
+      }, 210);
+    }
     modalEmitter.emit(modal.id, "EXITED");
   }, [modal]);
 
@@ -458,6 +471,7 @@ export function RednerDefaultModal({
       <div
         className={classNames(styles.modal, styles.sizing)}
         style={{
+          animationName: shake ? styles.shake : "",
           minHeight: "unset",
         }}
         onClick={(e) => e.stopPropagation()}
