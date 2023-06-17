@@ -4,9 +4,12 @@
   border: none;
   border-bottom: 1px solid var(--nextui--inputBorderColor);
   outline: none;
+  border-radius: 0px;
   transition: all 0.2s;
   box-sizing: border-box;
   color: var(--nextui--inputTextColor);
+
+  font-family: var(--POI-UI-FONT);
 }
 
 .ipt:hover,
@@ -26,6 +29,10 @@
   top: 50%;
   position: absolute;
   font-size: 1rem !important;
+}
+
+.label {
+  font-family: var(--POI-UI-FONT);
 }
 
 .label,

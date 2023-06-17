@@ -12,6 +12,7 @@ import getColorVarable from "../utils/getColorVarable";
 export type InputProps = React.HTMLProps<HTMLInputElement> & {
   color?: Color;
   icon?: string;
+  css: React.CSSProperties;
 };
 
 function TextInput(props: InputProps) {
@@ -35,7 +36,7 @@ function TextInput(props: InputProps) {
   };
 
   return (
-    <div className={styles.superContainer}>
+    <div className={styles.superContainer} style={props.css}>
       {props.icon ? (
         <div className={styles.lsideThing}>
           <Icon icon={props.icon} />
@@ -55,12 +56,12 @@ function TextInput(props: InputProps) {
         )}
         className={classNames(fonts.normal, styles.container)}
       >
-        {props.type == "password" ? (
+        {/* {props.type == "password" ? (
           <label className={classNames(styles.showHide)}>
             <ShowHideIcon iconName="visibility" showHide={showHide} />
             <ShowHideIcon iconName="visibility_off" showHide={!showHide} />
           </label>
-        ) : null}
+        ) : null} */}
         <label
           className={classNames(
             styles.label,
@@ -83,6 +84,8 @@ function TextInput(props: InputProps) {
           {props.placeholder}
         </label>
         <input
+          {...props}
+          placeholder=""
           ref={inputRef}
           type={
             props.type == "password"
@@ -125,6 +128,7 @@ export default function Input(props: InputProps) {
 
   if (inputType === "password") return <TextInput {...props} />;
   else if (inputType === "text") return <TextInput {...props} />;
+  else if (inputType === "url") return <TextInput {...props} />;
   else if (inputType === "file") return <FileInput {...props} />;
   else if (typeof inputType == "undefined")
     return <TextInput {...props} type="text" />;
