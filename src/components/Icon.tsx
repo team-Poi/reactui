@@ -18,10 +18,10 @@ export default function Icon(
         return a;
       })()}
       className={classNames(
-        props.className || "",
-        styles.icn,
+        "material-symbols-rounded",
         optCSS(props.animated || false, styles.animated),
-        "material-symbols-rounded"
+        styles.icn,
+        props.className || ""
       )}
       style={props.style}
     >
