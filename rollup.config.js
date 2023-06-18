@@ -22,7 +22,7 @@ const getFolders = (entry) => {
 };
 
 //loop through your folders and generate a rollup obj per folder
-const folderBuilds = () => {
+const componentBuilds = () => {
   return getFolders("./src/components").map((component) => {
     return {
       input: `src/components/${component}/index.tsx`,
@@ -53,7 +53,7 @@ const folderBuilds = () => {
 };
 
 //loop through your folders and generate a rollup obj per folder
-const folderTypes = () => {
+const componentTypeBuilds = () => {
   return getFolders("./src/components").map((component) => {
     return {
       input: `src/components/${component}/index.tsx`,
@@ -71,6 +71,66 @@ const folderTypes = () => {
       plugins: [dts()],
     };
   });
+};
+
+const component = () => {
+  return [...componentBuilds(), ...componentTypeBuilds()];
+};
+
+//loop through your folders and generate a rollup obj per folder
+const utilBuilds = () => {
+  return getFolders("./src/utils").map((component) => {
+    return {
+      input: `src/utils/${component}/index.ts`,
+      output: [
+        {
+          file: "dist/cjs/utils/" + component + "/index.js",
+          format: "cjs",
+          sourcemap: false,
+          name: "react-ts-lib",
+        },
+        {
+          file: "dist/esm/utils/" + component + "/index.js",
+          format: "esm",
+          sourcemap: false,
+        },
+      ],
+      plugins: [
+        external(),
+        resolve(),
+        commonjs(),
+        typescript({ tsconfig: "./tsconfig.json" }),
+        postcss({}),
+        terser(),
+      ],
+      external: ["react", "react-dom"],
+    };
+  });
+};
+
+//loop through your folders and generate a rollup obj per folder
+const utilTypeBuilds = () => {
+  return getFolders("./src/utils").map((component) => {
+    return {
+      input: `src/utils/${component}/index.ts`,
+      output: [
+        {
+          file: "dist/esm/utils/" + component + "/index.d.ts",
+          format: "esm",
+        },
+        {
+          file: "dist/cjs/utils/" + component + "/index.d.ts",
+          format: "esm",
+        },
+      ],
+      external: [/\.css$/],
+      plugins: [dts()],
+    };
+  });
+};
+
+const utils = () => {
+  return [...utilBuilds(), ...utilTypeBuilds()];
 };
 
 exports.default = [
@@ -109,6 +169,46 @@ exports.default = [
     external: [/\.css$/],
     plugins: [dts()],
   },
-  ...folderBuilds(),
-  ...folderTypes(),
+  ...component(),
+  ...utils(),
+  {
+    input: `src/hooks/Modal.tsx`,
+    output: [
+      {
+        file: "dist/cjs/hooks/Modal.js",
+        format: "cjs",
+        sourcemap: false,
+        name: "react-ts-lib",
+      },
+      {
+        file: "dist/esm/hooks/Modal.js",
+        format: "esm",
+        sourcemap: false,
+      },
+    ],
+    plugins: [
+      external(),
+      resolve(),
+      commonjs(),
+      typescript({ tsconfig: "./tsconfig.json" }),
+      postcss({}),
+      terser(),
+    ],
+    external: ["react", "react-dom"],
+  },
+  {
+    input: `src/hooks/Modal.tsx`,
+    output: [
+      {
+        file: "dist/esm/hooks/Modal.d.ts",
+        format: "esm",
+      },
+      {
+        file: "dist/cjs/hooks/Modal.d.ts",
+        format: "esm",
+      },
+    ],
+    external: [/\.css$/],
+    plugins: [dts()],
+  },
 ];
