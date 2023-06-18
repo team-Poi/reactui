@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2015",
     "module": "esnext",
     "jsx": "react",
     "outDir": "dist",
@@ -9,9 +9,6 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "declaration": true,
-    "declarationDir": "types",
-    "emitDeclarationOnly": true
+    "forceConsistentCasingInFileNames": true
   }
 }
