@@ -27,6 +27,6 @@
 }
 
 .dot.enabled {
-  left: var(--width);
+  left: 100%;
   transform: translateX(calc(var(--size) * -1));
 }
