@@ -539,9 +539,6 @@ export function ModalProvider({ children }: PropsWithChildren) {
   const [modals, setModals] = useState<ModalState[]>(defaultModalState.modals);
   const [modalOpened, setModalOpened] = useState(defaultModalState.modalOpened);
 
-  console.log("Modal queue", modals);
-  console.log("Modal opened", modalOpened);
-
   const onExitTryHandler: React.MouseEventHandler<HTMLDivElement> = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -550,7 +547,6 @@ export function ModalProvider({ children }: PropsWithChildren) {
   };
   const addConfirmModal = (modal: ConfirmModal) => {
     let id = Math.random().toString();
-    console.log("New", modal);
     setModals((oldModals) => [
       ...oldModals,
       {
@@ -574,7 +570,6 @@ export function ModalProvider({ children }: PropsWithChildren) {
   };
   const addPromptModal = (modal: PromptModal) => {
     let id = Math.random().toString();
-    console.log("New", modal);
     setModals((oldModals) => [
       ...oldModals,
       {
@@ -598,7 +593,6 @@ export function ModalProvider({ children }: PropsWithChildren) {
   };
   const addLineModal = (modal: PromptModal) => {
     let id = Math.random().toString();
-    console.log("New", modal);
     setModals((oldModals) => [
       ...oldModals,
       {
@@ -642,16 +636,6 @@ export function ModalProvider({ children }: PropsWithChildren) {
     });
     return;
   };
-  console.log("Modal provider data", {
-    modals,
-    modalOpened,
-    addModal: {
-      confirm: addConfirmModal,
-      prompt: addPromptModal,
-      line: addLineModal,
-      modal: addDefaultModal,
-    },
-  });
   return (
     <ModalContext.Provider
       value={{
