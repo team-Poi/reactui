@@ -1,12 +1,12 @@
-import Row, { Garo } from "./components/Row";
-import Column, { Saero } from "./components/Column";
-import Button from "./components/Button";
-import FullFlex from "./components/FullFlex";
-import Icon from "./components/Icon";
-import Input, { InputProps } from "./components/Input";
-import Loading from "./components/Loading";
-import Progress from "./components/Progress";
-import Switch from "./components/Switch";
+import Row, { Garo } from "./components/Row/index";
+import Column, { Saero } from "./components/Column/index";
+import Button from "./components/Button/index";
+import FullFlex from "./components/FullFlex/index";
+import Icon from "./components/Icon/index";
+import Input, { InputProps } from "./components/Input/index";
+import Loading from "./components/Loading/index";
+import Progress from "./components/Progress/index";
+import Switch from "./components/Switch/index";
 import {
   useModal,
   ModalContext,
