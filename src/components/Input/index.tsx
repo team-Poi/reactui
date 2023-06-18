@@ -21,19 +21,19 @@ function TextInput(props: InputProps) {
   const [val, setVal] = useState("");
   const [showHide, setShowHide] = useState(false);
 
-  const ShowHideIcon = (props: { showHide: boolean; iconName: string }) => {
-    return (
-      <Icon
-        icon={props.iconName}
-        animated
-        style={{
-          opacity: props.showHide ? 0 : 1,
-        }}
-        onClick={() => setShowHide((j) => !j)}
-        className={optCSS(props.showHide, styles.notEnabled)}
-      />
-    );
-  };
+  // const ShowHideIcon = (props: { showHide: boolean; iconName: string }) => {
+  //   return (
+  //     <Icon
+  //       icon={props.iconName}
+  //       animated
+  //       style={{
+  //         opacity: props.showHide ? 0 : 1,
+  //       }}
+  //       onClick={() => setShowHide((j) => !j)}
+  //       className={optCSS(props.showHide, styles.notEnabled)}
+  //     />
+  //   );
+  // };
 
   return (
     <div className={styles.superContainer} style={props.css}>
@@ -50,7 +50,7 @@ function TextInput(props: InputProps) {
           {
             paddingTop:
               props.placeholder && (isFocused || val.length > 0)
-                ? "19px"
+                ? "15px"
                 : "5px",
           }
         )}
