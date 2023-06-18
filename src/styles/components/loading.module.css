@@ -23,17 +23,17 @@
 
 .loader1 {
   z-index: 3;
-  animation: 0.7s ease-in-out 1s infinite running rotate1;
+  animation: 0.7s ease-in-out 0s infinite running rotate1;
 }
 .loader2 {
   z-index: 2;
   --color: #aaa;
-  animation: 0.7s ease-in-out 1s infinite running rotate2;
+  animation: 0.7s ease-in-out 0s infinite running rotate2;
 }
 .loader3 {
   z-index: 1;
   --color: #ccc;
-  animation: 0.7s ease-in-out 1s infinite running rotate3;
+  animation: 0.7s ease-in-out 0s infinite running rotate3;
 }
 @keyframes rotate1 {
   0% {
