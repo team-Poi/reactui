@@ -1,10 +1,10 @@
-import styles from "../styles/components/switch.module.css";
-import Color from "../types/colors";
-import classNames from "../utils/classNames";
-import cssVarableStyle from "../utils/cssVarableStyle";
-import getColorVarable from "../utils/getColorVarable";
-import optCSS from "../utils/onoffCSS";
-import getSizeCSS, { Size } from "../utils/size";
+import styles from "../../styles/components/switch.module.css";
+import Color from "../../types/colors";
+import classNames from "../../utils/classNames";
+import cssVarableStyle from "../../utils/cssVarableStyle";
+import getColorVarable from "../../utils/getColorVarable";
+import optCSS from "../../utils/onoffCSS";
+import getSizeCSS, { Size } from "../../utils/size";
 
 import React, { useState } from "react";
 

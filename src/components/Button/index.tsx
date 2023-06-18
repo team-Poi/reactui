@@ -1,11 +1,11 @@
-import styles from "../styles/components/button.module.css";
-import fonts from "../styles/font.module.css";
-import Color from "../types/colors";
-import classNames from "../utils/classNames";
+import styles from "../../styles/components/button.module.css";
+import fonts from "../../styles/font.module.css";
+import Color from "../../types/colors";
+import classNames from "../../utils/classNames";
 
-import React, { useState } from "react";
-import getColorVarable from "../utils/getColorVarable";
-import Ripple from "./Ripple";
+import React from "react";
+import getColorVarable from "../../utils/getColorVarable";
+import Ripple from "../Ripple";
 
 export default function Button(
   props: React.ButtonHTMLAttributes<HTMLButtonElement> & {

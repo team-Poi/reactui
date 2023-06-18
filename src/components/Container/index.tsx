@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./../styles/components/container.module.css";
-import classNames from "../utils/classNames";
+import styles from "../../styles/components/container.module.css";
+import classNames from "../../utils/classNames";
 
 export default function Conatiner(props: React.HTMLProps<HTMLDivElement>) {
   return (

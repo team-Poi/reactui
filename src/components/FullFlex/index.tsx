@@ -1,4 +1,4 @@
-import styles from "../styles/components/column.module.css";
+import styles from "../../styles/components/column.module.css";
 import React from "react";
 
 export default function FullFlex(props: React.HTMLProps<HTMLDivElement>) {

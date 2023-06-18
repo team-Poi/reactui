@@ -1,7 +1,6 @@
 import { CSSProperties, ReactNode } from "react";
-import styles from "../styles/components/column.module.css";
-import getSizeCSS, { Size } from "../utils/size";
-import { Property } from "csstype";
+import styles from "../../styles/components/column.module.css";
+import getSizeCSS, { Size } from "../../utils/size";
 
 import React from "react";
 

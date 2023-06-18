@@ -1,6 +1,6 @@
 import { CSSProperties, ReactNode } from "react";
-import styles from "../styles/components/row.module.css";
-import getSizeCSS, { Size } from "../utils/size";
+import styles from "../../styles/components/row.module.css";
+import getSizeCSS, { Size } from "../../utils/size";
 
 import React from "react";
 

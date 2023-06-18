@@ -1,8 +1,8 @@
-import styles from "../styles/components/progress.module.css";
-import Color from "../types/colors";
-import cssVarableStyle from "../utils/cssVarableStyle";
-import getColorVarable from "../utils/getColorVarable";
-import getSizeCSS, { Size } from "../utils/size";
+import styles from "../../styles/components/progress.module.css";
+import Color from "../../types/colors";
+import cssVarableStyle from "../../utils/cssVarableStyle";
+import getColorVarable from "../../utils/getColorVarable";
+import getSizeCSS, { Size } from "../../utils/size";
 
 import React from "react";
 

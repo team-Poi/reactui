@@ -1,18 +1,18 @@
 import React, { HTMLInputTypeAttribute, useState } from "react";
-import optCSS from "../utils/onoffCSS";
-import styles from "../styles/components/input.module.css";
-import classNames from "../utils/classNames";
-import cssVarableStyle from "../utils/cssVarableStyle";
-import Color from "../types/colors";
-import Icon from "./Icon";
+import optCSS from "../../utils/onoffCSS";
+import styles from "../../styles/components/input.module.css";
+import classNames from "../../utils/classNames";
+import cssVarableStyle from "../../utils/cssVarableStyle";
+import Color from "../../types/colors";
+import Icon from "../Icon";
 
-import fonts from "../styles/font.module.css";
-import getColorVarable from "../utils/getColorVarable";
+import fonts from "../../styles/font.module.css";
+import getColorVarable from "../../utils/getColorVarable";
 
 export type InputProps = React.HTMLProps<HTMLInputElement> & {
   color?: Color;
   icon?: string;
-  css: React.CSSProperties;
+  css?: React.CSSProperties;
 };
 
 function TextInput(props: InputProps) {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import styles from "./../styles/components/ripple.module.css";
-import classNames from "../utils/classNames";
+import styles from "../../styles/components/ripple.module.css";
+import classNames from "../../utils/classNames";
 
 export default function Ripple(
   props: React.HTMLProps<HTMLDivElement> & {
