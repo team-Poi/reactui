@@ -13,8 +13,8 @@
 }
 .background.opened {
   opacity: 1;
-  user-select: inherit;
-  pointer-events: inherit;
+  user-select: none;
+  pointer-events: unset;
 }
 .sizing {
   max-width: min(95vw, 600px);
