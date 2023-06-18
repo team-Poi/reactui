@@ -3,8 +3,8 @@ import React, {
   useCallback,
   useEffect,
   useRef,
+  useState,
 } from "react";
-import { useState } from "react";
 
 import styles from "../styles/components/modal.module.css";
 
@@ -34,7 +34,7 @@ export interface PromptModal {
   canBeEmpty?: boolean;
 }
 export interface DefaultModal {
-  renderChildren: (close: () => void) => React.ReactNode;
+  RenderChildren: (props: { close: () => void }) => React.ReactNode;
   canExit?: boolean;
 }
 export type Modal = ConfirmModal | PromptModal | DefaultModal;
@@ -442,18 +442,22 @@ export function RednerDefaultModal({
   const [shake, setShaking] = useState(false);
   const lastShake = useRef(new Date().getTime() - 2000);
 
-  const onTryCloseHandler = useCallback(() => {
-    if (modal.modal.canExit === false) {
-      lastShake.current = new Date().getTime();
-      setShaking(true);
-      setTimeout(() => {
-        let sha = new Date().getTime() - lastShake.current;
-        if (sha < 200) return;
-        setShaking(false);
-      }, 210);
-    }
-    modalEmitter.emit(modal.id, "EXITED");
-  }, [modal]);
+  const onTryCloseHandler = useCallback(
+    (forced?: boolean) => {
+      if (!forced && modal.modal && modal.modal.canExit === false) {
+        lastShake.current = new Date().getTime();
+        setShaking(true);
+        setTimeout(() => {
+          let sha = new Date().getTime() - lastShake.current;
+          if (sha < 200) return;
+          setShaking(false);
+        }, 210);
+        return;
+      }
+      modalEmitter.emit(modal.id, "EXITED");
+    },
+    [modal]
+  );
 
   useEffect(() => {
     modalEmitter.on("TRY.EXIT", onTryCloseHandler);
@@ -476,7 +480,11 @@ export function RednerDefaultModal({
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {modal.modal.renderChildren(onTryCloseHandler)}
+        {modal.modal.RenderChildren({
+          close() {
+            onTryCloseHandler(true);
+          },
+        })}
       </div>
     </>
   );
