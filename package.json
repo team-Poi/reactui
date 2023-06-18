@@ -1,7 +1,7 @@
 {
   "name": "@team.poi/ui",
   "private": false,
-  "version": "1.19.0-TEST1",
+  "version": "1.19.0-TEST2",
   "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.1",
