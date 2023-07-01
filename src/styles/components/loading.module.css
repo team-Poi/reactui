@@ -17,6 +17,7 @@
   border-left: var(--noneBorder);
   border-right: var(--noneBorder);
   border-bottom: var(--color) solid 0.1875rem;
+  box-sizing: border-box;
   position: absolute;
   top: 0px;
 }
